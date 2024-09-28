@@ -5,7 +5,7 @@
       <div class="container mx-auto flex justify-between items-center">
         <h1 class="text-xl font-bold text-orange-700">Hari Sarvottama</h1>
         <img
-          src="https://vyasarajamatha.org/wp-content/uploads/2022/03/Hanuma3-.png"
+          src='../assets/images/Hanuma1.png'
           alt="hanuma"
         />
         <div class="relative flex flex-col items-center">
@@ -27,14 +27,14 @@
             </text>
           </svg>
           <img
-            src="https://vyasarajamatha.org/wp-content/uploads/2022/03/circle-1-oif243d5q4sylp98lhxtjts6goczthixxotr90wtrk.png"
-            alt="Bheema"
+            src='../assets/images/GopalaKrishna.png'
+            alt="krishna"
             class="w-24 h-24 rounded-full absolute"
             style="top: 80px; left: 50%; transform: translateX(-50%)"
           />
         </div>
         <img
-          src="https://vyasarajamatha.org/wp-content/uploads/2022/03/Garuda-Stone3.png"
+          src='../assets/images/hanuma2.png'
           alt="Bheema"
         />
         <h1 class="text-xl font-bold text-orange-700">Vaayu Jeevottama</h1>
@@ -69,7 +69,12 @@
           </div>
         </div>
 
+        <div class="p-4 bg-orange-100 text-center">
+          <h1 class="text-xl font-sans font-semibold text-orange-900">Our Previous Editions</h1>
+        </div>
+
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
+          
           <!-- Card 1 -->
           <div class="rounded-lg shadow-md p-4 bg-orange-100">
             <img
@@ -113,7 +118,7 @@
           <!-- Card 5 -->
           <div class="bg-orange-100 rounded-lg shadow-md p-4">
             <img
-              src="https://cdn.exoticindia.com/images/products/thumbnails/t800x600/books-2019/mzl307.jpg"
+              src='E:\vyasaraja mutt\assets\images\TC May 2024.jpg'
               alt="Book 6"
               class="w-full rounded-lg mb-4"
             />
@@ -133,7 +138,7 @@
           <!-- Card 7 -->
           <div class="bg-orange-100 rounded-lg shadow-md p-4">
             <img
-              src="https://cdn.exoticindia.com/images/products/thumbnails/t800x600/books-2019/mzl307.jpg"
+              src='../assets/images/TC July-24.jpg'
               alt="Book 7"
               class="w-full rounded-lg mb-4"
             />
@@ -150,6 +155,12 @@
             <p class="text-center text-orange-800 font-bold">August 2024</p>
           </div>
         </div>
+        <div class="m-8 p-4 bg-orange-100">
+          <h1 class="text-2xl font-semibold font-sans text-center text-orange-950">Want to be a subscriber to Sri Tatwa Chandrika Monthly Magazine of Sri Vyasaraja Mutt ? </h1>
+          <h1 class="text-xl font-semibold font-sans underline text-red-500 text-center mt-5"><nuxt-link to="HomePage" target="_blank">Click Here</nuxt-link></h1> 
+          
+        </div>
+
 
         <!-- Mathas information -->
       </div>
