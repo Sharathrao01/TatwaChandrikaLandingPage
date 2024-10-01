@@ -1,71 +1,72 @@
 <template>
-  <div class="container mx-auto mt-5 px-4">
+  <div class="container mx-auto mt-8 px-4">
     <!-- Breadcrumb Navigation -->
-    <nav aria-label="breadcrumb" class="mb-4">
+    <nav aria-label="breadcrumb" class="mb-6">
       <ol class="flex space-x-2 text-gray-700">
         <li>
-          <router-link to="/HomePage" class="text-blue-600 hover:text-blue-800">Home</router-link>
+          <router-link to="/HomePage" class="text-blue-600 hover:text-blue-800 font-semibold">Home</router-link>
         </li>
         <li>
           <span>/</span>
         </li>
-        <li class="text-gray-500" aria-current="page">Magazine Subscribers</li>
+        <li class="text-gray-500 font-semibold" aria-current="page">Magazine Subscribers</li>
       </ol>
     </nav>
 
-    <h2 class="text-2xl font-bold mb-4">Magazine Subscribers</h2>
-    <button class="bg-blue-600 text-white px-4 py-2 rounded-md shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 mb-3" @click="openAddSubscriberModal">Add Subscriber</button>
+    <h2 class="text-3xl font-bold text-gray-800 mb-4">Magazine Subscribers</h2>
+    <button class="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-5 py-2 rounded-md shadow-md hover:bg-gradient-to-l transition duration-200 mb-4">Add Subscriber</button>
 
     <!-- Tabs for Active and Inactive Subscribers -->
-    <ul class="flex border-b border-gray-200 mb-4">
-      <li class="mr-2">
-        <button class="py-2 px-4 font-medium text-blue-600 border-b-2" :class="{ 'border-blue-600': activeTab === 'active', 'text-gray-600': activeTab !== 'active' }" @click="activeTab = 'active'">Active Subscribers</button>
+    <ul class="flex border-b border-gray-300 mb-4">
+      <li class="mr-4">
+        <button class="py-2 px-6 text-lg font-medium text-gray-600 hover:text-blue-600 transition duration-200" :class="{ 'border-b-2 border-blue-600 text-blue-600': activeTab === 'active' }" @click="activeTab = 'active'">Active Subscribers</button>
       </li>
       <li>
-        <button class="py-2 px-4 font-medium text-blue-600 border-b-2" :class="{ 'border-blue-600': activeTab === 'inactive', 'text-gray-600': activeTab !== 'inactive' }" @click="activeTab = 'inactive'">Inactive Subscribers</button>
+        <button class="py-2 px-6 text-lg font-medium text-gray-600 hover:text-blue-600 transition duration-200" :class="{ 'border-b-2 border-blue-600 text-blue-600': activeTab === 'inactive' }" @click="activeTab = 'inactive'">Inactive Subscribers</button>
       </li>
     </ul>
 
     <div class="tab-content">
       <!-- Active Subscribers Tab -->
       <div v-show="activeTab === 'active'">
-        <!-- Nested Tabs for Current Subscribers and Waiting for Renewal -->
-        <ul class="flex border-b border-gray-200 mb-4">
-          <li class="mr-2">
-            <button class="py-2 px-4 font-medium text-blue-600 border-b-2" :class="{ 'border-blue-600': activeSubTab === 'current', 'text-gray-600': activeSubTab !== 'current' }" @click="activeSubTab = 'current'">Current Subscribers</button>
+        <ul class="flex border-b border-gray-300 mb-4">
+          <li class="mr-4">
+            <button class="py-2 px-6 text-lg font-medium text-gray-600 hover:text-blue-600 transition duration-200" :class="{ 'border-b-2 border-blue-600 text-blue-600': activeSubTab === 'current' }" @click="activeSubTab = 'current'">Current Subscribers</button>
           </li>
           <li>
-            <button class="py-2 px-4 font-medium text-blue-600 border-b-2" :class="{ 'border-blue-600': activeSubTab === 'renewal', 'text-gray-600': activeSubTab !== 'renewal' }" @click="activeSubTab = 'renewal'">Waiting for Renewal</button>
+            <button class="py-2 px-6 text-lg font-medium text-gray-600 hover:text-blue-600 transition duration-200" :class="{ 'border-b-2 border-blue-600 text-blue-600': activeSubTab === 'renewal' }" @click="activeSubTab = 'renewal'">Waiting for Renewal</button>
           </li>
         </ul>
         
         <div class="tab-content">
           <!-- Current Subscribers Tab -->
           <div v-show="activeSubTab === 'current'">
-            <table class="min-w-full bg-white divide-y divide-gray-200">
-              <thead class="bg-gray-50">
+            <table class="min-w-full bg-white divide-y divide-gray-300 shadow-md">
+              <thead class="bg-gray-100">
                 <tr>
-                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Registration Number</th>
-                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">City/Town</th>
-                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">State</th>
-                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Phone</th>
-                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
-                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Name</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Registration Number</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">City/Town</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">State</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Phone</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Email</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Actions</th>
                 </tr>
               </thead>
               <tbody class="bg-white divide-y divide-gray-200">
-                <tr v-for="subscriber in currentSubscribers" :key="subscriber._id">
-                  <td class="px-6 py-4 text-sm text-gray-900">{{ subscriber.name }}</td>
-                  <td class="px-6 py-4 text-sm text-gray-900">{{ subscriber.registration_number }}</td>
-                  <td class="px-6 py-4 text-sm text-gray-900">{{ subscriber.city_town }}</td>
-                  <td class="px-6 py-4 text-sm text-gray-900">{{ subscriber.state }}</td>
-                  <td class="px-6 py-4 text-sm text-gray-900">{{ subscriber.phone }}</td>
-                  <td class="px-6 py-4 text-sm text-gray-900">{{ subscriber.email }}</td>
-                  <td class="px-6 py-4 text-sm text-gray-900">
-                    <button class="bg-blue-600 text-white px-3 py-1 rounded-md text-xs shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500" @click="viewSubscriber(subscriber._id)">View</button>
-                    <button class="bg-gray-600 text-white px-3 py-1 rounded-md text-xs shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500" @click="openEditSubscriberModal(subscriber)">Edit</button>
-                    <button class="bg-red-600 text-white px-3 py-1 rounded-md text-xs shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500" @click="confirmDeleteSubscriber(subscriber._id)">Delete</button>
+                <tr v-for="subscriber in currentSubscribers" :key="subscriber._id" class="hover:bg-gray-50 transition duration-200">
+                  <td class="px-6 py-4 text-sm text-gray-800">{{ subscriber.name }}</td>
+                  <td class="px-6 py-4 text-sm text-gray-800">{{ subscriber.registration_number }}</td>
+                  <td class="px-6 py-4 text-sm text-gray-800">{{ subscriber.city_town }}</td>
+                  <td class="px-6 py-4 text-sm text-gray-800">{{ subscriber.state }}</td>
+                  <td class="px-6 py-4 text-sm text-gray-800">{{ subscriber.phone }}</td>
+                  <td class="px-6 py-4 text-sm text-gray-800">{{ subscriber.email }}</td>
+                  <td class="px-6 py-4 text-sm text-gray-800 flex space-x-2">
+                    <nuxt-link :to="`/magazineSubscriberDetails?id=${subscriber._id}`">
+                      <button class="bg-blue-600 text-white px-4 py-1 rounded-md text-xs shadow-sm hover:bg-blue-700 transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500">View</button>
+                    </nuxt-link>
+                    <button class="bg-gray-600 text-white px-4 py-1 rounded-md text-xs shadow-sm hover:bg-gray-700 transition duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500" @click="openEditSubscriberModal(subscriber)">Edit</button>
+                    <button class="bg-green-600 text-white px-4 py-1 rounded-md text-xs shadow-sm hover:bg-green-700 transition duration-200 focus:outline-none focus:ring-2 focus:ring-green-500" @click="activateSubscriber(subscriber._id)">Activate</button>
                   </td>
                 </tr>
               </tbody>
@@ -74,30 +75,32 @@
           
           <!-- Waiting for Renewal Tab -->
           <div v-show="activeSubTab === 'renewal'">
-            <table class="min-w-full bg-white divide-y divide-gray-200">
-              <thead class="bg-gray-50">
+            <table class="min-w-full bg-white divide-y divide-gray-300 shadow-md">
+              <thead class="bg-gray-100">
                 <tr>
-                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Registration Number</th>
-                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">City/Town</th>
-                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">State</th>
-                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Phone</th>
-                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
-                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Name</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Registration Number</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">City/Town</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">State</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Phone</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Email</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Actions</th>
                 </tr>
               </thead>
               <tbody class="bg-white divide-y divide-gray-200">
-                <tr v-for="subscriber in waitingForRenewalSubscribers" :key="subscriber._id">
-                  <td class="px-6 py-4 text-sm text-gray-900">{{ subscriber.name }}</td>
-                  <td class="px-6 py-4 text-sm text-gray-900">{{ subscriber.registration_number }}</td>
-                  <td class="px-6 py-4 text-sm text-gray-900">{{ subscriber.city_town }}</td>
-                  <td class="px-6 py-4 text-sm text-gray-900">{{ subscriber.state }}</td>
-                  <td class="px-6 py-4 text-sm text-gray-900">{{ subscriber.phone }}</td>
-                  <td class="px-6 py-4 text-sm text-gray-900">{{ subscriber.email }}</td>
-                  <td class="px-6 py-4 text-sm text-gray-900">
-                    <button class="bg-blue-600 text-white px-3 py-1 rounded-md text-xs shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500" @click="viewSubscriber(subscriber._id)">View</button>
-                    <button class="bg-gray-600 text-white px-3 py-1 rounded-md text-xs shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500" @click="openEditSubscriberModal(subscriber)">Edit</button>
-                    <button class="bg-red-600 text-white px-3 py-1 rounded-md text-xs shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500" @click="confirmDeleteSubscriber(subscriber._id)">Delete</button>
+                <tr v-for="subscriber in waitingForRenewalSubscribers" :key="subscriber._id" class="hover:bg-gray-50 transition duration-200">
+                  <td class="px-6 py-4 text-sm text-gray-800">{{ subscriber.name }}</td>
+                  <td class="px-6 py-4 text-sm text-gray-800">{{ subscriber.registration_number }}</td>
+                  <td class="px-6 py-4 text-sm text-gray-800">{{ subscriber.city_town }}</td>
+                  <td class="px-6 py-4 text-sm text-gray-800">{{ subscriber.state }}</td>
+                  <td class="px-6 py-4 text-sm text-gray-800">{{ subscriber.phone }}</td>
+                  <td class="px-6 py-4 text-sm text-gray-800">{{ subscriber.email }}</td>
+                  <td class="px-6 py-4 text-sm text-gray-800 flex space-x-2">
+                    <nuxt-link :to="`/magazineSubscriberDetails?id=${subscriber._id}`">
+                      <button class="bg-blue-600 text-white px-4 py-1 rounded-md text-xs shadow-sm hover:bg-blue-700 transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500">View</button>
+                    </nuxt-link>
+                    <button class="bg-gray-600 text-white px-4 py-1 rounded-md text-xs shadow-sm hover:bg-gray-700 transition duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500" @click="openEditSubscriberModal(subscriber)">Edit</button>
+                    <button class="bg-green-600 text-white px-4 py-1 rounded-md text-xs shadow-sm hover:bg-green-700 transition duration-200 focus:outline-none focus:ring-2 focus:ring-green-500" @click="activateSubscriber(subscriber._id)">Activate</button>
                   </td>
                 </tr>
               </tbody>
@@ -108,30 +111,32 @@
       
       <!-- Inactive Subscribers Tab -->
       <div v-show="activeTab === 'inactive'">
-        <table class="min-w-full bg-white divide-y divide-gray-200">
-          <thead class="bg-gray-50">
+        <table class="min-w-full bg-white divide-y divide-gray-300 shadow-md">
+          <thead class="bg-gray-100">
             <tr>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Registration Number</th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">City/Town</th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">State</th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Phone</th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Name</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Registration Number</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">City/Town</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">State</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Phone</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Email</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Actions</th>
             </tr>
           </thead>
           <tbody class="bg-white divide-y divide-gray-200">
-            <tr v-for="subscriber in inactiveSubscribers" :key="subscriber._id">
-              <td class="px-6 py-4 text-sm text-gray-900">{{ subscriber.name }}</td>
-              <td class="px-6 py-4 text-sm text-gray-900">{{ subscriber.registration_number }}</td>
-              <td class="px-6 py-4 text-sm text-gray-900">{{ subscriber.city_town }}</td>
-              <td class="px-6 py-4 text-sm text-gray-900">{{ subscriber.state }}</td>
-              <td class="px-6 py-4 text-sm text-gray-900">{{ subscriber.phone }}</td>
-              <td class="px-6 py-4 text-sm text-gray-900">{{ subscriber.email }}</td>
-              <td class="px-6 py-4 text-sm text-gray-900">
-                <button class="bg-blue-600 text-white px-3 py-1 rounded-md text-xs shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500" @click="viewSubscriber(subscriber._id)">View</button>
-                <button class="bg-gray-600 text-white px-3 py-1 rounded-md text-xs shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500" @click="openEditSubscriberModal(subscriber)">Edit</button>
-                <button class="bg-green-600 text-white px-3 py-1 rounded-md text-xs shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500" @click="activateSubscriber(subscriber._id)">Activate</button>
+            <tr v-for="subscriber in inactiveSubscribers" :key="subscriber._id" class="hover:bg-gray-50 transition duration-200">
+              <td class="px-6 py-4 text-sm text-gray-800">{{ subscriber.name }}</td>
+              <td class="px-6 py-4 text-sm text-gray-800">{{ subscriber.registration_number }}</td>
+              <td class="px-6 py-4 text-sm text-gray-800">{{ subscriber.city_town }}</td>
+              <td class="px-6 py-4 text-sm text-gray-800">{{ subscriber.state }}</td>
+              <td class="px-6 py-4 text-sm text-gray-800">{{ subscriber.phone }}</td>
+              <td class="px-6 py-4 text-sm text-gray-800">{{ subscriber.email }}</td>
+              <td class="px-6 py-4 text-sm text-gray-800 flex space-x-2">
+                <nuxt-link :to="`/magazineSubscriberDetails?id=${subscriber._id}`">
+                  <button class="bg-blue-600 text-white px-4 py-1 rounded-md text-xs shadow-sm hover:bg-blue-700 transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500">View</button>
+                </nuxt-link>
+                <button class="bg-gray-600 text-white px-4 py-1 rounded-md text-xs shadow-sm hover:bg-gray-700 transition duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500" @click="openEditSubscriberModal(subscriber)">Edit</button>
+                <button class="bg-green-600 text-white px-4 py-1 rounded-md text-xs shadow-sm hover:bg-green-700 transition duration-200 focus:outline-none focus:ring-2 focus:ring-green-500" @click="activateSubscriber(subscriber._id)">Activate</button>
               </td>
             </tr>
           </tbody>
@@ -283,7 +288,7 @@ export default {
       });
     },
     viewSubscriber(subscriberId) {
-      this.$router.push({ name: 'SubscriberDetails', params: { id: subscriberId } });
+      this.$router.push({ path: `/magazineSubscriberDetails?id=${subscriberId}` });
     }
   }
 };

@@ -1,42 +1,48 @@
 <template>
-  <div class="container mx-auto mt-5 px-4">
+  <div class="container mx-auto mt-8 px-6">
     <!-- Breadcrumb Navigation -->
-    <nav aria-label="breadcrumb" class="mb-4">
-      <ol class="flex space-x-2 text-gray-700">
+    <nav aria-label="breadcrumb" class="mb-6">
+      <ol class="flex space-x-2 text-sm text-gray-600">
         <li>
-          <router-link to="/HomePage" class="text-blue-600 hover:text-blue-800">Home</router-link>
+          <router-link to="/HomePage" class="text-blue-600 hover:text-blue-800 hover:underline">Home</router-link>
         </li>
-        <li>
-          <span>/</span>
-        </li>
+        <li><span>/</span></li>
         <li class="text-gray-500" aria-current="page">Payment Modes</li>
       </ol>
     </nav>
 
-    <h2 class="text-2xl font-bold mb-4">Payment Modes</h2>
-    <button class="bg-blue-600 text-white px-4 py-2 rounded-md shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 mb-3" @click="addMode">Add Payment Mode</button>
+    <!-- Header Section -->
+    <h2 class="text-3xl font-semibold text-gray-800 mb-6">Payment Modes</h2>
 
-    <table class="min-w-full bg-white divide-y divide-gray-200">
-      <thead class="bg-gray-50">
-        <tr>
-          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
-        </tr>
-      </thead>
-      <tbody class="bg-white divide-y divide-gray-200">
-        <tr v-for="mode in paymentModes" :key="mode._id">
-          <td class="px-6 py-4 text-sm text-gray-900">
-            <input v-if="editModeId === mode._id" type="text" v-model="mode.name" class="border border-gray-300 px-2 py-1 rounded-md"/>
-            <span v-else>{{ mode.name }}</span>
-          </td>
-          <td class="px-6 py-4 text-sm text-gray-900">
-            <button class="bg-green-600 text-white px-3 py-1 rounded-md text-xs shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500" v-if="editModeId === mode._id" @click="saveMode(mode)">Save</button>
-            <button class="bg-yellow-500 text-white px-3 py-1 rounded-md text-xs shadow-sm hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-400" v-else @click="editMode(mode._id)">Edit</button>
-            <button class="bg-red-600 text-white px-3 py-1 rounded-md text-xs shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500" @click="confirmDeleteMode(mode._id)">Delete</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <!-- Add Payment Mode Button -->
+    <button class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-2 rounded-full shadow-lg hover:from-purple-600 hover:to-blue-500 transition duration-200 focus:outline-none focus:ring-4 focus:ring-blue-400 mb-6" @click="addMode">
+      Add Payment Mode
+    </button>
+
+    <!-- Payment Modes Table -->
+    <div class="overflow-hidden rounded-lg shadow-lg bg-white">
+      <table class="min-w-full bg-white divide-y divide-gray-200">
+        <thead class="bg-gradient-to-r from-gray-100 to-gray-200">
+          <tr>
+            <th class="px-6 py-4 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Name</th>
+            <th class="px-6 py-4 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="mode in paymentModes" :key="mode._id" class="hover:bg-gray-100 transition duration-200">
+            <td class="px-6 py-4">
+              <input v-if="editModeId === mode._id" type="text" v-model="mode.name" class="border border-gray-300 px-4 py-2 rounded-md focus:ring-2 focus:ring-blue-300 w-full"/>
+              <span v-else class="px-6 py-4 text-md font-semibold text-gray-700 font-sans">{{ mode.name }}</span>
+            </td>
+            <td class="px-6 py-4 space-x-3">
+              <button v-if="editModeId === mode._id" class="bg-green-500 text-white px-4 py-2 rounded-md text-xs shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400" @click="saveMode(mode)">Save</button>
+              <button v-else class="bg-yellow-500 text-white px-4 py-2 rounded-md text-xs shadow-md hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-400" @click="editMode(mode._id)">Edit</button>
+              <button class="bg-red-500 text-white px-4 py-2 rounded-md text-xs shadow-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400" @click="confirmDeleteMode(mode._id)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
     <!-- Confirmation Modal -->
     <confirmation-modal
@@ -126,5 +132,5 @@ export default {
 </script>
 
 <style scoped>
-/* You can add custom styles here if needed */
+/* Add custom styles here */
 </style>

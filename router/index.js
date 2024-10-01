@@ -61,7 +61,7 @@ const routes = [
     path: '/payment-modes',
     name: 'PaymentModes',
     component: PaymentModes
-  }
+  },
 ];
 
 const router = createRouter({

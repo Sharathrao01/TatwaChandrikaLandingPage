@@ -1,69 +1,71 @@
 <template>
-  <div class="container mx-auto mt-5 px-4">
+  <div class="container mx-auto mt-8 px-4">
     <!-- Breadcrumb -->
-    <nav aria-label="breadcrumb" class="mb-4">
+    <nav aria-label="breadcrumb" class="mb-6">
       <ol class="flex space-x-2 text-gray-700">
         <li>
-          <router-link to="/HomePage" class="text-blue-600 hover:text-blue-800">Home</router-link>
+          <router-link to="/HomePage" class="text-blue-600 hover:text-blue-800 font-semibold">Home</router-link>
         </li>
         <li>
           <span>/</span>
         </li>
         <li>
-          <router-link to="/subscribers" class="text-blue-600 hover:text-blue-800">Subscribers</router-link>
+          <router-link to="/MagazineSubscribers" class="text-blue-600 hover:text-blue-800 font-semibold">Subscribers</router-link>
         </li>
         <li>
           <span>/</span>
         </li>
-        <li class="text-gray-500" aria-current="page">{{ subscriber.name }}</li>
+        <li class="text-gray-500 font-semibold" aria-current="page">{{ subscriber.name }}</li>
       </ol>
     </nav>
 
     <!-- Subscriber Details -->
-    <h2 class="text-2xl font-bold mb-4">{{ subscriber.name }}</h2>
-    <div class="space-y-2 mb-6">
-      <p><strong>Registration Number:</strong> {{ subscriber.registration_number }}</p>
-      <p><strong>Address:</strong> {{ subscriber.address }}</p>
-      <p><strong>City/Town:</strong> {{ subscriber.city_town }}</p>
-      <p><strong>State:</strong> {{ subscriber.state }}</p>
-      <p><strong>Pincode:</strong> {{ subscriber.pincode }}</p>
-      <p><strong>Phone:</strong> {{ subscriber.phone }}</p>
-      <p><strong>Email:</strong> {{ subscriber.email }}</p>
-      <p><strong>Category:</strong> {{ getCategoryName(subscriber.category) }}</p>
-      <p><strong>Type:</strong> {{ getTypeName(subscriber.stype) }}</p>
-      <p><strong>Notes:</strong> {{ subscriber.notes }}</p>
+    <h2 class="text-3xl font-bold text-gray-800 mb-6">{{ subscriber.name }}</h2>
+    <div class="bg-white shadow-md rounded-lg p-6 mb-6">
+      <div class="space-y-2">
+        <p><strong>Registration Number:</strong> <span class="text-gray-600">{{ subscriber.registration_number }}</span></p>
+        <p><strong>Address:</strong> <span class="text-gray-600">{{ subscriber.address }}</span></p>
+        <p><strong>City/Town:</strong> <span class="text-gray-600">{{ subscriber.city_town }}</span></p>
+        <p><strong>State:</strong> <span class="text-gray-600">{{ subscriber.state }}</span></p>
+        <p><strong>Pincode:</strong> <span class="text-gray-600">{{ subscriber.pincode }}</span></p>
+        <p><strong>Phone:</strong> <span class="text-gray-600">{{ subscriber.phone }}</span></p>
+        <p><strong>Email:</strong> <span class="text-gray-600">{{ subscriber.email }}</span></p>
+        <p><strong>Category:</strong> <span class="text-gray-600">{{ getCategoryName(subscriber.category) }}</span></p>
+        <p><strong>Type:</strong> <span class="text-gray-600">{{ getTypeName(subscriber.stype) }}</span></p>
+        <p><strong>Notes:</strong> <span class="text-gray-600">{{ subscriber.notes }}</span></p>
+      </div>
     </div>
 
     <!-- Add Subscription Button -->
-    <button class="bg-blue-600 text-white px-4 py-2 rounded-md shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 mb-3" @click="openAddSubscriptionModal">Add Subscription</button>
+    <button class="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-4 py-2 rounded-md shadow-md hover:bg-gradient-to-l transition duration-200 mb-4" @click="openAddSubscriptionModal">Add Subscription</button>
 
     <!-- Tabs for Active and Inactive Subscriptions -->
-    <ul class="flex border-b border-gray-200 mb-4">
-      <li class="mr-2">
-        <button class="py-2 px-4 font-medium text-blue-600 border-b-2 border-blue-600" :class="{ 'border-blue-600 text-blue-600': activeTab === 'active', 'text-gray-600': activeTab !== 'active' }" @click="activeTab = 'active'">Active Subscriptions</button>
+    <ul class="flex border-b border-gray-300 mb-4">
+      <li class="mr-4">
+        <button class="py-2 px-6 font-medium text-gray-600 hover:text-blue-600 transition duration-200" :class="{ 'border-b-2 border-blue-600 text-blue-600': activeTab === 'active' }" @click="activeTab = 'active'">Active Subscriptions</button>
       </li>
       <li>
-        <button class="py-2 px-4 font-medium text-blue-600 border-b-2" :class="{ 'border-blue-600 text-blue-600': activeTab === 'inactive', 'text-gray-600': activeTab !== 'inactive' }" @click="activeTab = 'inactive'">Inactive Subscriptions</button>
+        <button class="py-2 px-6 font-medium text-gray-600 hover:text-blue-600 transition duration-200" :class="{ 'border-b-2 border-blue-600 text-blue-600': activeTab === 'inactive' }" @click="activeTab = 'inactive'">Inactive Subscriptions</button>
       </li>
     </ul>
 
     <div class="tab-content">
       <!-- Active Subscriptions Tab -->
       <div v-show="activeTab === 'active'">
-        <table class="min-w-full divide-y divide-gray-200">
-          <thead class="bg-gray-50">
+        <table class="min-w-full divide-y divide-gray-200 shadow-md">
+          <thead class="bg-gray-100">
             <tr>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Start Date</th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">End Date</th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Subscription Plan</th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Payment Status</th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Payment Mode</th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Payment Date</th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Start Date</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">End Date</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Subscription Plan</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Payment Status</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Payment Mode</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Payment Date</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Actions</th>
             </tr>
           </thead>
           <tbody class="bg-white divide-y divide-gray-200">
-            <tr v-for="subscription in activeSubscriptions" :key="subscription._id">
+            <tr v-for="subscription in activeSubscriptions" :key="subscription._id" class="hover:bg-gray-50 transition duration-200">
               <td class="px-6 py-4 text-sm text-gray-900">{{ formatDate(subscription.start_date) }}</td>
               <td class="px-6 py-4 text-sm text-gray-900">{{ formatDate(subscription.end_date) }}</td>
               <td class="px-6 py-4 text-sm text-gray-900">{{ getPlanName(subscription.subscription_plan) }}</td>
@@ -71,7 +73,7 @@
               <td class="px-6 py-4 text-sm text-gray-900">{{ getPaymentModeName(subscription.payment_mode) }}</td>
               <td class="px-6 py-4 text-sm text-gray-900">{{ formatDate(subscription.payment_date) }}</td>
               <td class="px-6 py-4 text-sm text-gray-900">
-                <button class="bg-gray-600 text-white px-3 py-1 rounded-md text-xs shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500" @click="openEditSubscriptionModal(subscription)">Edit</button>
+                <button class="bg-gray-600 text-white px-4 py-1 rounded-md text-xs shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500" @click="openEditSubscriptionModal(subscription)">Edit</button>
               </td>
             </tr>
           </tbody>
@@ -80,20 +82,20 @@
 
       <!-- Inactive Subscriptions Tab -->
       <div v-show="activeTab === 'inactive'">
-        <table class="min-w-full divide-y divide-gray-200">
-          <thead class="bg-gray-50">
+        <table class="min-w-full divide-y divide-gray-200 shadow-md">
+          <thead class="bg-gray-100">
             <tr>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Start Date</th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">End Date</th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Subscription Plan</th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Payment Status</th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Payment Mode</th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Payment Date</th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Start Date</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">End Date</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Subscription Plan</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Payment Status</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Payment Mode</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Payment Date</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Actions</th>
             </tr>
           </thead>
           <tbody class="bg-white divide-y divide-gray-200">
-            <tr v-for="subscription in inactiveSubscriptions" :key="subscription._id">
+            <tr v-for="subscription in inactiveSubscriptions" :key="subscription._id" class="hover:bg-gray-50 transition duration-200">
               <td class="px-6 py-4 text-sm text-gray-900">{{ formatDate(subscription.start_date) }}</td>
               <td class="px-6 py-4 text-sm text-gray-900">{{ formatDate(subscription.end_date) }}</td>
               <td class="px-6 py-4 text-sm text-gray-900">{{ getPlanName(subscription.subscription_plan) }}</td>
@@ -101,7 +103,7 @@
               <td class="px-6 py-4 text-sm text-gray-900">{{ getPaymentModeName(subscription.payment_mode) }}</td>
               <td class="px-6 py-4 text-sm text-gray-900">{{ formatDate(subscription.payment_date) }}</td>
               <td class="px-6 py-4 text-sm text-gray-900">
-                <button class="bg-gray-600 text-white px-3 py-1 rounded-md text-xs shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500" @click="openEditSubscriptionModal(subscription)">Edit</button>
+                <button class="bg-gray-600 text-white px-4 py-1 rounded-md text-xs shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500" @click="openEditSubscriptionModal(subscription)">Edit</button>
               </td>
             </tr>
           </tbody>
@@ -160,7 +162,7 @@ export default {
   },
   methods: {
     loadSubscriber() {
-      const subscriberId = this.$route.params.id;
+      const subscriberId = this.$route.query.id;
       magazineSubscriberService.getMagazineSubscriberById(subscriberId).then(response => {
         this.subscriber = response.data;
         this.loadSubscriptions(subscriberId);

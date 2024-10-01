@@ -1,62 +1,66 @@
 <template>
-  <div class="container mx-auto mt-5 px-4">
-    <h2 class="text-2xl font-bold mb-4">Subscription Modes</h2>
+  <div class="container mx-auto mt-8 px-6">
+    <h2 class="text-3xl font-semibold text-gray-900 mb-6">Subscription Modes</h2>
 
     <!-- Breadcrumb Navigation -->
-    <nav aria-label="breadcrumb" class="mb-4">
-      <ol class="flex space-x-2 text-gray-700">
+    <nav aria-label="breadcrumb" class="mb-8">
+      <ol class="flex space-x-2 text-gray-600">
         <li>
-          <router-link to="/HomePage" class="text-blue-600 hover:text-blue-800">Home</router-link>
+          <router-link to="/HomePage" class="text-indigo-600 hover:text-indigo-800 font-medium">Home</router-link>
         </li>
         <li>/</li>
-        <li class="text-gray-500" aria-current="page">Subscription Modes</li>
+        <li class="text-gray-500 font-medium" aria-current="page">Subscription Modes</li>
       </ol>
     </nav>
 
     <!-- Subscription Modes Table -->
-    <table class="min-w-full bg-white divide-y divide-gray-200">
-      <thead class="bg-gray-50">
-        <tr>
-          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
-        </tr>
-      </thead>
-      <tbody class="bg-white divide-y divide-gray-200">
-        <!-- Add New Mode Row -->
-        <tr v-if="addingNew">
-          <td class="px-6 py-4">
-            <input type="text" v-model="newSubscriptionMode.name" class="border border-gray-300 px-2 py-1 rounded-md w-full" />
-          </td>
-          <td class="px-6 py-4">
-            <button class="bg-blue-600 text-white px-4 py-2 rounded-md shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 mr-2" @click="saveNewSubscriptionMode">Save</button>
-            <button class="bg-gray-300 text-gray-700 px-4 py-2 rounded-md shadow-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500" @click="cancelNewSubscriptionMode">Cancel</button>
-          </td>
-        </tr>
+    <div class="shadow-lg overflow-hidden border border-gray-300 sm:rounded-lg">
+      <table class="min-w-full divide-y divide-gray-200">
+        <thead class="bg-gray-100">
+          <tr>
+            <th class="px-6 py-4 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider">Name</th>
+            <th class="px-6 py-4 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider">Actions</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-100">
+          <!-- Add New Mode Row -->
+          <tr v-if="addingNew">
+            <td class="px-6 py-4">
+              <input type="text" v-model="newSubscriptionMode.name" class="border border-gray-300 px-4 py-2 rounded-full w-full focus:ring focus:ring-indigo-300 focus:border-indigo-500" placeholder="Enter mode name" />
+            </td>
+            <td class="px-6 py-4">
+              <button class="bg-indigo-600 text-white px-5 py-2 rounded-full shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 mr-2" @click="saveNewSubscriptionMode">Save</button>
+              <button class="bg-gray-500 text-white px-5 py-2 rounded-full shadow-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-300" @click="cancelNewSubscriptionMode">Cancel</button>
+            </td>
+          </tr>
 
-        <!-- Existing Modes Rows -->
-        <tr v-for="mode in subscriptionModes" :key="mode._id">
-          <template v-if="editMode === mode._id">
-            <td class="px-6 py-4">
-              <input type="text" v-model="editSubscriptionMode.name" class="border border-gray-300 px-2 py-1 rounded-md w-full" />
-            </td>
-            <td class="px-6 py-4">
-              <button class="bg-blue-600 text-white px-4 py-2 rounded-md shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 mr-2" @click="updateSubscriptionMode(mode._id)">Save</button>
-              <button class="bg-gray-300 text-gray-700 px-4 py-2 rounded-md shadow-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500" @click="cancelEdit">Cancel</button>
-            </td>
-          </template>
-          <template v-else>
-            <td class="px-6 py-4 text-sm text-gray-900">{{ mode.name }}</td>
-            <td class="px-6 py-4">
-              <button class="bg-yellow-500 text-white px-4 py-2 rounded-md shadow-md hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-400 mr-2" @click="editSubscriptionModeFunc(mode)">Edit</button>
-              <button class="bg-red-600 text-white px-4 py-2 rounded-md shadow-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500" @click="showDeleteModal(mode._id)">Delete</button>
-            </td>
-          </template>
-        </tr>
-      </tbody>
-    </table>
+          <!-- Existing Modes Rows -->
+          <tr v-for="mode in subscriptionModes" :key="mode._id" class="hover:bg-gray-50 transition duration-150">
+            <template v-if="editMode === mode._id">
+              <td class="px-6 py-4">
+                <input type="text" v-model="editSubscriptionMode.name" class="border border-gray-300 px-4 py-2 rounded-full w-full focus:ring focus:ring-indigo-300 focus:border-indigo-500" />
+              </td>
+              <td class="px-6 py-4">
+                <button class="bg-indigo-600 text-white px-5 py-2 rounded-full shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 mr-2" @click="updateSubscriptionMode(mode._id)">Save</button>
+                <button class="bg-gray-500 text-white px-5 py-2 rounded-full shadow-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-300" @click="cancelEdit">Cancel</button>
+              </td>
+            </template>
+            <template v-else>
+              <td class="px-6 py-4 text-md font-semibold text-gray-700 font-sans">{{ mode.name }}</td>
+              <td class="px-6 py-4 flex items-center space-x-3">
+                <button class="bg-yellow-500 text-white px-5 py-2 rounded-full shadow-md hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-400" @click="editSubscriptionModeFunc(mode)">Edit</button>
+                <button class="bg-red-500 text-white px-5 py-2 rounded-full shadow-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400" @click="showDeleteModal(mode._id)">Delete</button>
+              </td>
+            </template>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
     <!-- Add New Mode Button -->
-    <button class="bg-green-600 text-white px-4 py-2 rounded-md shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 mt-3" @click="startAddingNew">Add New Mode</button>
+    <div class="mt-6">
+      <button class="bg-teal-600 text-white px-6 py-3 rounded-full shadow-md hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-400" @click="startAddingNew">Add New Mode</button>
+    </div>
 
     <!-- Confirmation Modal -->
     <confirmation-modal
@@ -160,5 +164,5 @@ export default {
 </script>
 
 <style scoped>
-/* Add your styles here if needed */
+/* Add custom styles for smooth hover effects and modern design */
 </style>
