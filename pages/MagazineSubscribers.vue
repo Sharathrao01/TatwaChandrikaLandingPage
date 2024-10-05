@@ -14,7 +14,7 @@
     </nav>
 
     <h2 class="text-3xl font-bold text-gray-800 mb-4">Magazine Subscribers</h2>
-    <button class="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-5 py-2 rounded-md shadow-md hover:bg-gradient-to-l transition duration-200 mb-4">Add Subscriber</button>
+    <button class="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-5 py-2 rounded-md shadow-md hover:bg-gradient-to-l transition duration-200 mb-4" @click="openEditSubscriberModal">Add Subscriber</button>
 
     <!-- Tabs for Active and Inactive Subscribers -->
     <ul class="flex border-b border-gray-300 mb-4">
@@ -44,8 +44,8 @@
             <table class="min-w-full bg-white divide-y divide-gray-300 shadow-md">
               <thead class="bg-gray-100">
                 <tr>
-                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Name</th>
                   <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Registration Number</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Name</th>
                   <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">City/Town</th>
                   <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">State</th>
                   <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Phone</th>
@@ -55,8 +55,8 @@
               </thead>
               <tbody class="bg-white divide-y divide-gray-200">
                 <tr v-for="subscriber in currentSubscribers" :key="subscriber._id" class="hover:bg-gray-50 transition duration-200">
-                  <td class="px-6 py-4 text-sm text-gray-800">{{ subscriber.name }}</td>
                   <td class="px-6 py-4 text-sm text-gray-800">{{ subscriber.registration_number }}</td>
+                  <td class="px-6 py-4 text-sm text-gray-800">{{ subscriber.name }}</td>
                   <td class="px-6 py-4 text-sm text-gray-800">{{ subscriber.city_town }}</td>
                   <td class="px-6 py-4 text-sm text-gray-800">{{ subscriber.state }}</td>
                   <td class="px-6 py-4 text-sm text-gray-800">{{ subscriber.phone }}</td>
@@ -66,7 +66,7 @@
                       <button class="bg-blue-600 text-white px-4 py-1 rounded-md text-xs shadow-sm hover:bg-blue-700 transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500">View</button>
                     </nuxt-link>
                     <button class="bg-gray-600 text-white px-4 py-1 rounded-md text-xs shadow-sm hover:bg-gray-700 transition duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500" @click="openEditSubscriberModal(subscriber)">Edit</button>
-                    <button class="bg-green-600 text-white px-4 py-1 rounded-md text-xs shadow-sm hover:bg-green-700 transition duration-200 focus:outline-none focus:ring-2 focus:ring-green-500" @click="activateSubscriber(subscriber._id)">Activate</button>
+                    <button class="bg-red-600 text-white px-4 py-1 rounded-md text-xs shadow-sm hover:bg-yellow-700 transition duration-200 focus:outline-none focus:ring-2 focus:ring-red-500" @click="confirmDeleteSubscriber(subscriber._id)">Delete</button>
                   </td>
                 </tr>
               </tbody>
@@ -78,8 +78,8 @@
             <table class="min-w-full bg-white divide-y divide-gray-300 shadow-md">
               <thead class="bg-gray-100">
                 <tr>
-                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Name</th>
                   <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Registration Number</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Name</th>
                   <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">City/Town</th>
                   <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">State</th>
                   <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Phone</th>
@@ -89,8 +89,8 @@
               </thead>
               <tbody class="bg-white divide-y divide-gray-200">
                 <tr v-for="subscriber in waitingForRenewalSubscribers" :key="subscriber._id" class="hover:bg-gray-50 transition duration-200">
-                  <td class="px-6 py-4 text-sm text-gray-800">{{ subscriber.name }}</td>
                   <td class="px-6 py-4 text-sm text-gray-800">{{ subscriber.registration_number }}</td>
+                  <td class="px-6 py-4 text-sm text-gray-800">{{ subscriber.name }}</td>
                   <td class="px-6 py-4 text-sm text-gray-800">{{ subscriber.city_town }}</td>
                   <td class="px-6 py-4 text-sm text-gray-800">{{ subscriber.state }}</td>
                   <td class="px-6 py-4 text-sm text-gray-800">{{ subscriber.phone }}</td>
@@ -100,7 +100,7 @@
                       <button class="bg-blue-600 text-white px-4 py-1 rounded-md text-xs shadow-sm hover:bg-blue-700 transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500">View</button>
                     </nuxt-link>
                     <button class="bg-gray-600 text-white px-4 py-1 rounded-md text-xs shadow-sm hover:bg-gray-700 transition duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500" @click="openEditSubscriberModal(subscriber)">Edit</button>
-                    <button class="bg-green-600 text-white px-4 py-1 rounded-md text-xs shadow-sm hover:bg-green-700 transition duration-200 focus:outline-none focus:ring-2 focus:ring-green-500" @click="activateSubscriber(subscriber._id)">Activate</button>
+                    <button class="bg-red-600 text-white px-4 py-1 rounded-md text-xs shadow-sm hover:bg-orange-700 transition duration-200 focus:outline-none focus:ring-2 focus:red-red-500" @click="confirmDeleteSubscriber(subscriber._id)">Delete</button>
                   </td>
                 </tr>
               </tbody>
@@ -114,8 +114,8 @@
         <table class="min-w-full bg-white divide-y divide-gray-300 shadow-md">
           <thead class="bg-gray-100">
             <tr>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Name</th>
               <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Registration Number</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Name</th>
               <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">City/Town</th>
               <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">State</th>
               <th class="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Phone</th>
@@ -125,8 +125,8 @@
           </thead>
           <tbody class="bg-white divide-y divide-gray-200">
             <tr v-for="subscriber in inactiveSubscribers" :key="subscriber._id" class="hover:bg-gray-50 transition duration-200">
-              <td class="px-6 py-4 text-sm text-gray-800">{{ subscriber.name }}</td>
               <td class="px-6 py-4 text-sm text-gray-800">{{ subscriber.registration_number }}</td>
+              <td class="px-6 py-4 text-sm text-gray-800">{{ subscriber.name }}</td>
               <td class="px-6 py-4 text-sm text-gray-800">{{ subscriber.city_town }}</td>
               <td class="px-6 py-4 text-sm text-gray-800">{{ subscriber.state }}</td>
               <td class="px-6 py-4 text-sm text-gray-800">{{ subscriber.phone }}</td>
@@ -225,8 +225,8 @@ export default {
     },
     openAddSubscriberModal() {
       this.selectedSubscriber = {
-        name: '',
         registration_number: '',
+        name: '',
         address: '',
         city_town: '',
         state: '',
